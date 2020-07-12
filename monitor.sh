@@ -141,6 +141,8 @@ function notify
         #We convert the float representating the memory usage to an integer for convenience.
         mem_usage_int=$(printf "%.f" $2)
         
+        #Check if process exceeded its CPU or MEM thresholds. If that is the case, send an email to $USER containing the last report
+        
         #Check if the process has exceeded the memory thresholds
         if [ $mem_usage_int -gt $MEM_THRESHOLD ]; then
                 echo "Memory threshold exceeded. Sending email to $USER"
@@ -155,7 +157,7 @@ function notify
                 /usr/bin/mailx -s "CPU Threshold reached" $USER < ./reports_dir/$newest_report
         fi
         
-        #Check if process exceeded its CPU or MEM thresholds. If that is the case, send an email to $USER containing the last report
+        
 
 }
 
